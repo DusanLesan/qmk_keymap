@@ -8,11 +8,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-# List of keymap json files to build
         file:
         - dusanlesan.json
-
-# End of json file list
 
     steps:
 
@@ -31,7 +28,7 @@ jobs:
         path: users/${{ github.actor }}
 
     - name: Build firmware
-      run: qmk compile "users/${{ github.actor }}/${{ matrix.file }}"
+      run: qmk compile "users/${{ github.actor }}/${{ matrix.file }}" -e CONVERT_TO=promicro_rp2040
 
     - name: Archive firmware
       uses: actions/upload-artifact@v3
